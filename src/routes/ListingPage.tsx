@@ -1,5 +1,5 @@
-import { useState, useEffect, useMemo, useContext } from 'react'
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { useState, useEffect, useMemo,  } from 'react'
+import { useSearchParams, useNavigate,  } from "react-router-dom";
 
 import { type product, type meta, onFetchProducts } from '../services/productsFetch'
 
@@ -7,10 +7,8 @@ import Filter from '../components/Filter'
 import Sorter from '../components/Sorter'
 import Card from '../components/Card'
 import Pagination from '../components/Pagination'
-import { UserContext, type contextType } from '@/App';
 
 export default function ListingPage() {
-    const [user] = useContext<contextType>(UserContext) || [null, () => { }];
 
     const navigate = useNavigate();
 
@@ -95,11 +93,7 @@ export default function ListingPage() {
                 <header className="flex items-center justify-between">
                     <div className='flex flex-row gap-6 items-end'>
                         <p className="text-5xl font-semibold">Products</p>
-                         {user?.username &&
-                         <Link to={"/product/create"} className="flex justify-center items-center gap-2 border border-gray-400 rounded-lg px-4 py-2 cursor-pointer">
-                            add product
-                        </Link>
-    }
+                        
                     </div>
                     <form 
                         className='flex flex-row gap-4'

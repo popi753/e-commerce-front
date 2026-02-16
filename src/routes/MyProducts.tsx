@@ -33,12 +33,12 @@ export default function MyProducts() {
                                 {error ? "something went wrong" :
                                     <>
                                         <div className="flex-1 flex flex-row flex-wrap gap-y-12 gap-x-6 justify-center">
-                                            {products?.map((product, index) => (
+                                            {products.length ?  products?.map((product, index) => (
                                                 <Card
                                                     key={product._id + index.toLocaleString()}
                                                     product={product}>
                                                 </Card>
-                                            )) ?? "No products found"
+                                            )) : "No products found"
                                             }
                                         </div>
                                       

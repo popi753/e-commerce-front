@@ -28,11 +28,15 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(()=>{
+    
+    const token = localStorage.getItem("token");
     if (user) {
       return
     }
+    if (!token) {
+      return
+    }
     onCheckProfile().then((data) => {
-      console.log("Profile data:", data);
       if (data.success) {
         setUser(data.user);
       }

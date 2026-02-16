@@ -39,7 +39,9 @@ export async function onFetchProducts({ page, from, to, sort, searchString }: on
     + (from ? (page ? "&" : "?") + "from=" + from : "")
     + (to ? ((page || from) ? "&" : "?") + "to=" + to : "")
     + (sort ? ((page || from || to) ? "&" : "?") + "sort=" + sort : "")
-    + (searchString ? ((page || from || to || sort) ? "&" : "?") + "search=" + searchString : "");
+    + (searchString ? ((page || from || to || sort) ? "&" : "?") + "searchString=" + searchString : "");
+
+    console.log(searchString);
 
   try {
     const response = await fetch(finalurl, {
@@ -49,13 +51,15 @@ export async function onFetchProducts({ page, from, to, sort, searchString }: on
       }
     });
     if (!response.ok) {
-      throw "something went wrong";
+      const errorData = await response.json();
+      throw errorData;
     };
     const result = await response.json();
     console.log(result);
 
     return result;
   } catch (error: any) {
+    console.log(error)
     throw new Error((error));
   }
 };

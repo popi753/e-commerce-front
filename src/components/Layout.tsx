@@ -31,36 +31,41 @@ export default function Layout() {
                     <span className="font-semibold text-sm leading-6 tracking-normal text-gray-600">Products</span>
                 </Link>
 
+
             </div>
 
 
 
             <div className="flex flex-row justify-between items-center gap-2 font-raleway max-sm:hidden">
+       
                 {user?.username ? (
-                    <details ref={detailsRef}>
-                        <summary className="flex justify-center items-center gap-2 border border-gray-400 rounded-lg px-4 py-2 cursor-pointer">
-                            👱 profile
-                        </summary>
-                        <div className="z-100 right-20 w-80 h-36 absolute flex flex-col rounded-lg border border-gray-400 bg-white shadow-[0px_1px_4px_0px_#00000026]">
-                            <div className="flex-1 flex flex-row justify-between items-end px-6 py-8">
-
-                                <div className="h-full flex flex-col justify-between items-start">
-                                    👱 
-                                    <div className="flex flex-col">
-                                        <Link to="/myproducts" className="text-sm font-semibold text-blue-600 hover:underline">
-                                            View Products
-                                        </Link>
-                                        <span className="font-semibold text-sm leading-5" >{user.username}</span>
-                                        <span className="text-sm leading-5">{user.email}</span>
+                    <div className="flex flex-row gap-4">
+                         <Link to={"/product/create"} className="flex justify-center items-center gap-2 border border-gray-400 rounded-lg px-4 py-2 cursor-pointer">
+                            add product
+                        </Link>
+                        <details ref={detailsRef}>
+                            <summary className="flex justify-center items-center gap-2 border border-gray-400 rounded-lg px-4 py-2 cursor-pointer">
+                                👱 profile
+                            </summary>
+                            <div className="z-100 right-20 w-80 h-36 absolute flex flex-col rounded-lg border border-gray-400 bg-white shadow-[0px_1px_4px_0px_#00000026]">
+                                <div className="flex-1 flex flex-row justify-between items-end px-6 py-8">
+                                    <div className="h-full flex flex-col justify-between items-start">
+                                        👱
+                                        <div className="flex flex-col">
+                                            <Link to="/myproducts" className="text-sm font-semibold text-blue-600 hover:underline">
+                                                View Products
+                                            </Link>
+                                            <span className="font-semibold text-sm leading-5" >{user.username}</span>
+                                            <span className="text-sm leading-5">{user.email}</span>
+                                        </div>
+                                    </div>
+                                    <div onClick={() => {onLogout();}} className="cursor-pointer">
+                                        Log out
                                     </div>
                                 </div>
-                                <div onClick={() => {onLogout();}} className="cursor-pointer">
-                                    Log out
-                                </div>
                             </div>
-
-                        </div>
-                    </details>
+                        </details>
+                    </div>
                 ) :
 
                     <>

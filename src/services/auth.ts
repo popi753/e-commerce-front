@@ -30,17 +30,15 @@ export  async function onRegister(data: { username: string, email: string, passw
 
 }
 
-
-
 export  async function onLogin(data: { email: string, password: string }) : Promise<{ token: string, user: User }> {
     console.log("Logging in user with data:", data);
 
-    return {
-        user :{
-        username: "testuser",
-        email: "safasf@sadfas.sfdf"},
-        token: "sdfsdfsd"
-    }
+    // return {
+    //     user :{
+    //     username: "testuser",
+    //     email: "safasf@sadfas.sfdf"},
+    //     token: "sdfsdfsd"
+    // }
     
     try {
         const response = await fetch(`${url}/auth/login`, {
@@ -106,7 +104,6 @@ export async function onCheckProfile() : Promise<{ success: boolean, user: User 
     return null;
 
 }
-
 
 export async function onLogout() {
     localStorage.removeItem("token");

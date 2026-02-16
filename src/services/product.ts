@@ -3,14 +3,6 @@ const url = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 export async function onProductAdd(data: { name: string, description: string, price: string | number }) {
 
-
-
-    data = {
-        name: "Product 1" + Date.now(),
-        description: "A sample product" + Date.now(),
-        price: Math.random() * 25
-    };
-
     const token = localStorage.getItem("token");
 
     try {

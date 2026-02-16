@@ -30,7 +30,6 @@ export default function ProductAdd({ ...props }: React.ComponentProps<typeof Car
     const [user, setUser] = useContext<contextType>(UserContext) || [null, () => { }];
 
 
-
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-start p-4">
             <Link className="self-start pl-10 py-10" to="/listing">← Back to products</Link>
@@ -54,7 +53,6 @@ export default function ProductAdd({ ...props }: React.ComponentProps<typeof Car
                                 price: parseFloat(productData.get("price") as string),
                             }).then((data) => {
                                 console.log("Product creation successful");
-
                                 navigate("/listing");
                             }).catch((error) => {
                                 console.error("Product creation failed:", error);
