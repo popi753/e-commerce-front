@@ -36,7 +36,7 @@ export default function Filter({ setFrom, setTo }: filterProps) {
                 <summary className="flex items-center gap-2 text-lg">
                     <p className="filter-label">Filter</p>
                 </summary>
-                <div className="w-100 flex flex-col absolute rounded-lg border border-gray-400 shadow-[0px_1px_4px_0px_#00000026] bg-white right-48">
+                <div className="z-50 w-100 flex flex-col absolute rounded-lg border border-gray-400 shadow-[0px_1px_4px_0px_#00000026] bg-white right-48">
                     <div className="flex p-4 gap-5 flex-col">
                         <p className="self-start font-semibold gap-3">Select Price</p>
                         <form className="flex flex-col gap-3" onSubmit={(e) => handleSubmit(e)}>

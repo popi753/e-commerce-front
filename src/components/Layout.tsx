@@ -47,6 +47,9 @@ export default function Layout() {
                                 <div className="h-full flex flex-col justify-between items-start">
                                     👱 
                                     <div className="flex flex-col">
+                                        <Link to="/myproducts" className="text-sm font-semibold text-blue-600 hover:underline">
+                                            View Products
+                                        </Link>
                                         <span className="font-semibold text-sm leading-5" >{user.username}</span>
                                         <span className="text-sm leading-5">{user.email}</span>
                                     </div>

@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const url = "https://api.redseam.redberryinternship.ge/api"
+const url = import.meta.env.REACT_APP_BACKEND_URL || "http://localhost:3000";
 
 export type product = {
-  id: number,
+  _id: number,
   name: string,
-  cover_image: string,
+  description: string,
+  cover_image?: string,
   price: number,
+  user: {_id: string, username: string}
 }
 
 export type meta = {
@@ -28,14 +30,16 @@ type onFetchProductsProps = {
   from?: string,
   to?: string,
   sort?: string,
+  searchString?: string
 }
 
-export async function onFetchProducts({ page, from, to, sort }: onFetchProductsProps): Promise<result | Error> {
+export async function onFetchProducts({ page, from, to, sort, searchString }: onFetchProductsProps): Promise<result | Error> {
   const finalurl = url + "/products"
     + (page ? "?page=" + page : "")
-    + (from ? (page ? "&" : "?") + "filter[price_from]=" + from : "")
-    + (to ? ((page || from) ? "&" : "?") + "filter[price_to]=" + to : "")
-    + (sort ? ((page || from || to) ? "&" : "?") + "sort=" + sort : "");
+    + (from ? (page ? "&" : "?") + "from=" + from : "")
+    + (to ? ((page || from) ? "&" : "?") + "to=" + to : "")
+    + (sort ? ((page || from || to) ? "&" : "?") + "sort=" + sort : "")
+    + (searchString ? ((page || from || to || sort) ? "&" : "?") + "search=" + searchString : "");
 
   try {
     const response = await fetch(finalurl, {
@@ -48,18 +52,9 @@ export async function onFetchProducts({ page, from, to, sort }: onFetchProductsP
       throw "something went wrong";
     };
     const result = await response.json();
-    const obj = {
-      products: result.data.map((item: any) => {
-        return {
-          id: item.id,
-          name: item.name,
-          cover_image: item.cover_image,
-          price: item.price,
-        };
-      }),
-      meta: result.meta,
-    }
-    return obj;
+    console.log(result);
+
+    return result;
   } catch (error: any) {
     throw new Error((error));
   }

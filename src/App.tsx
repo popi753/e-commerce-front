@@ -8,6 +8,8 @@ import './App.css'
 import { createContext, useEffect, useState } from 'react'
 import { onCheckProfile } from './services/auth'
 import ListingPage from './routes/ListingPage'
+import ProductAdd from './routes/ProductAdd'
+import MyProducts from './routes/MyProducts'
 
 export type User = {
   username: string;
@@ -26,6 +28,9 @@ function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(()=>{
+    if (user) {
+      return
+    }
     onCheckProfile().then((data) => {
       console.log("Profile data:", data);
       if (data.success) {
@@ -52,6 +57,14 @@ function App() {
           <Route path='/' element={<div>Welcome to our page</div>} />
 
           <Route path='/listing' element={<ListingPage />} />
+          {user?.username && 
+          <>
+            
+                <Route path='/product/create' element={<ProductAdd />} />
+                <Route path='/myproducts' element={<MyProducts />} />
+            
+          </>    
+              }
 
         </Route>
 
